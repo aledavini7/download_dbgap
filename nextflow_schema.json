@@ -31,11 +31,11 @@
     "properties": {
         "sratoolkit_prefetch": {
             "type": "string",
-            "default": "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/prefetch"
+            "default": "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/sratoolkit.3.0.6-ubuntu64/bin/prefetch"
         },
         "sratoolkit": {
             "type": "string",
-            "default": "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/sam-dump"
+            "default": "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/sratoolkit.3.0.6-ubuntu64/bin/sam-dump"
         },
         "my_key": {
             "type": "string",
