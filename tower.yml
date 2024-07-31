@@ -1,0 +1,4 @@
+reports:
+  "*.bam":
+    display: "bam"
+
