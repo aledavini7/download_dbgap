@@ -30,13 +30,16 @@
     ],
     "properties": {
         "sratoolkit_prefetch": {
-            "type": "string"
+            "type": "string",
+            "default": "/hpcnfs/scratch/ED/CLAM/dbgap/sratoolkit.3.0.6-ubuntu64/bin/prefetch"
         },
         "sratoolkit": {
-            "type": "string"
+            "type": "string",
+            "default": "/hpcnfs/scratch/ED/CLAM/dbgap/sratoolkit.3.0.6-ubuntu64/bin/sam-dump"
         },
         "my_key": {
-            "type": "string"
+            "type": "string",
+            "default": "/hpcnfs/scratch/ED/CLAM/dbgap/my_project_key/prj_32315.ngc"
         }
     },
     "required": [
