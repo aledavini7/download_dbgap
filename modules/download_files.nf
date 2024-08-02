@@ -1,7 +1,9 @@
 
 
 process download {
-
+    
+    label 'download'
+    
     input:
     val(x)
     
@@ -14,3 +16,4 @@ process download {
     """
 
 }
+
