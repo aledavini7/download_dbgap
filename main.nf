@@ -14,7 +14,7 @@ include { convert } from './modules/convert_files.nf'
 workflow {
 
     Channel
-        .fromPath( "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/SRR_Acc_List.txt" )
+        .fromPath( "/hpcnfs/scratch/ED/CLAM/dbgap/phs000235_dlbcl_fl/SRR_Acc_List.txt" )
         .splitText().map{it -> it.trim()}
         .set { samples_ch }
 
