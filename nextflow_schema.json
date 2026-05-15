@@ -1,24 +1,50 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com//master/nextflow_schema.json",
-    "title": " pipeline parameters",
-    "description": "",
+    "$id": "https://raw.githubusercontent.com/aledavini7/download_dbgap/main/nextflow_schema.json",
+    "title": "download_dbgap pipeline parameters",
+    "description": "Download dbGaP SRA files and convert them to BAM.",
     "type": "object",
     "definitions": {
         "input_output_options": {
             "title": "Input/output options",
             "type": "object",
             "fa_icon": "fas fa-terminal",
-            "description": "Define where the pipeline should find input data and save output data.",
+            "description": "Define input files and output directory.",
             "required": [
+                "accession_list",
                 "outdir"
             ],
             "properties": {
+                "accession_list": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to a text file containing one SRA accession per line.",
+                    "fa_icon": "fas fa-file-alt"
+                },
                 "outdir": {
                     "type": "string",
                     "format": "directory-path",
-                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "description": "Output directory where BAM files will be saved.",
                     "fa_icon": "fas fa-folder-open"
+                }
+            }
+        },
+        "tool_options": {
+            "title": "Tool options",
+            "type": "object",
+            "description": "Paths to SRA Toolkit executables and dbGaP key.",
+            "properties": {
+                "sratoolkit_prefetch": {
+                    "type": "string",
+                    "default": "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/sratoolkit.3.0.6-ubuntu64/bin/prefetch"
+                },
+                "sratoolkit": {
+                    "type": "string",
+                    "default": "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/sratoolkit.3.0.6-ubuntu64/bin/sam-dump"
+                },
+                "my_key": {
+                    "type": "string",
+                    "default": "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/prj_32315.ngc"
                 }
             }
         }
@@ -26,23 +52,14 @@
     "allOf": [
         {
             "$ref": "#/definitions/input_output_options"
+        },
+        {
+            "$ref": "#/definitions/tool_options"
         }
     ],
-    "properties": {
-        "sratoolkit_prefetch": {
-            "type": "string",
-            "default": "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/sratoolkit.3.0.6-ubuntu64/bin/prefetch"
-        },
-        "sratoolkit": {
-            "type": "string",
-            "default": "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/sratoolkit.3.0.6-ubuntu64/bin/sam-dump"
-        },
-        "my_key": {
-            "type": "string",
-            "default": "/hpcscratch/ieo/seqera-ederenzini/download_dbgap/prj_32315.ngc"
-        }
-    },
     "required": [
+        "accession_list",
+        "outdir",
         "sratoolkit_prefetch",
         "sratoolkit",
         "my_key"

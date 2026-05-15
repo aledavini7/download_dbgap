@@ -12,8 +12,8 @@ process download {
 
     script:
     """
-    $params.sratoolkit_prefetch --ngc $params.my_key --max-size 200G --output-file "${x}.sra" $x
+    prefetch --ngc $params.my_key --max-size 200G --output-file "${x}.sra" $x
     """
-
+    
 }
 

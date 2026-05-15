@@ -14,7 +14,7 @@ include { convert } from './modules/convert_files.nf'
 workflow {
 
     Channel
-        .fromPath( "/hpcnfs/scratch/ED/CLAM/dbgap/phs000435_cll_wes/SRR_Acc_List.txt" )
+        .fromPath( params.accession_list )
         .splitText().map{it -> it.trim()}
         .set { samples_ch }
 

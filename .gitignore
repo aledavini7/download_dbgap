@@ -1,0 +1,21 @@
+# Nextflow
+.nextflow*
+work/
+
+# Test files
+test_accession.txt
+
+# Logs
+*.log
+
+# Downloaded data
+*.sra
+*.bam
+
+# Outputs
+results/
+test_out/
+
+# macOS / editors
+.DS_Store
+.vscode/
