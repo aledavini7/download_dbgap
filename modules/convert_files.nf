@@ -1,21 +1,34 @@
 
+process sam_dump {
 
-process convert {
-    
-
-    publishDir "${params.outdir}/${sample_id}", mode: 'copy'
-      
-    label 'convert'
+    label 'sam_dump'
 
     input:
-    tuple val(sample_id), path(sra_files)
+    tuple val(sample_id), path(sra_file)
 
     output:
-    tuple val(sample_id), path('*.bam')
+    tuple val(sample_id), path("${sample_id}.sam")
 
     script:
     """
-    $params.sratoolkit $sra_files | samtools view -Sb > ${sample_id}.bam
+    sam-dump $sra_file > ${sample_id}.sam
     """
+}
 
+process sam_to_bam {
+
+    publishDir "${params.outdir}/${sample_id}", mode: 'copy'
+
+    label 'sam_to_bam'
+
+    input:
+    tuple val(sample_id), path(sam_file)
+
+    output:
+    tuple val(sample_id), path("${sample_id}.bam")
+
+    script:
+    """
+    samtools view -Sb $sam_file > ${sample_id}.bam
+    """
 }
