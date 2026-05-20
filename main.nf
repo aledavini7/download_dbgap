@@ -9,7 +9,7 @@ nextflow.enable.dsl = 2
 //params.my_key = "/hpcnfs/scratch/ED/CLAM/dbgap/my_project_key/prj_32315.ngc"
 
 include { download } from './modules/download_files.nf'
-include { sam_dump; sam_to_bam } from './modules/convert_files.nf'
+include { convert } from './modules/convert_files.nf'
 
 workflow {
 
@@ -21,8 +21,6 @@ workflow {
     samples_ch.view()
 
     sra_ch = download(samples_ch)
-    
-    sam_ch = sam_dump(sra_ch)
-    bams_ch = sam_to_bam(sam_ch)
+    bams_ch = convert(sra_ch)
 
 }
